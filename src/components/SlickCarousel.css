@@ -1,0 +1,64 @@
+.slider {
+    background-color: #008cbb;
+    height: 25rem;
+}
+
+.slider-container {
+    position: relative;
+}
+
+.slider-text {
+    position: absolute;
+    top: 50px;
+    left: 900px;
+    width: 500px;
+}
+
+.slider-text h1 {
+    color: white;
+    font-size: 2em;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.slider-text h3 {
+    font-size: 1.7em;
+    color: #fcb8d2;
+    text-decoration: none;
+    font-weight: lighter;
+
+}
+
+.slider-text h5 {
+    color: #008cbb;
+}
+
+.slider-image {
+    height: 25rem;
+}
+
+.slick-prev,
+.slick-next
+{
+    font-size: 0;
+    line-height: 0;
+
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+}

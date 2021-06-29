@@ -1,0 +1,52 @@
+.header {
+    width: 100%;
+    box-sizing: border-box;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 0 5%;
+    box-shadow: 0 0 0 1px lightgray;
+}
+  
+.logo {
+    width: 50%;
+    height: 100%;
+}
+  
+.header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: baseline;
+}
+  
+.header li {
+    margin-left: 3rem;
+}
+  
+.header a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #fcb8d2;
+}
+  
+.header a:hover,
+.header a:active,
+.header a.active {
+    color: #008cbb;
+}
+  
+.badge {
+    background-color: #008cbb;
+    color: white !important;
+    border-radius: 12px;
+    padding: 0 1rem;
+    margin-left: 0.5rem;
+}
+
+.badge:hover {
+    background-color: #fcb8d2;
+}

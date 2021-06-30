@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MainNavBar from './MainNavBar';
+import MainNavBar from '../MainNavBar';
 
 import './MainLayout.css';
 

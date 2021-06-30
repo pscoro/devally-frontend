@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 
 import './SignUpForm.css';
-import Card from './ui/Card';
+import Card from '../ui/Card';
 
 type SignUpData = {
     email: string,
@@ -10,7 +10,9 @@ type SignUpData = {
 }
 
 type PropsSignUpForm = {
-    onSignUp(signUpData: SignUpData): void
+    onSignUp(signUpData: SignUpData): void,
+    usernameAlreadyExists: boolean,
+    emailAlreadyExists: boolean
 }
 
 const SignUpForm: React.FC<PropsSignUpForm> = (props) => {
@@ -30,8 +32,6 @@ const SignUpForm: React.FC<PropsSignUpForm> = (props) => {
 
     function submitHandler(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-
-        console.log("CLICK");
 
         if (null !== usernameInputRef.current && null !== emailInputRef.current && null !== passwordInputRef.current && null !== retypePasswordInputRef) {
             const enteredUsername = usernameInputRef.current.value;
@@ -69,11 +69,13 @@ const SignUpForm: React.FC<PropsSignUpForm> = (props) => {
                             }
                         }} />
                         {!validEmail && <p>Email is Invalid</p>}
+                        {props.emailAlreadyExists && <p>Email already exists</p>}
                     </div>
                     <div className='control'>
                         <label htmlFor='username'>Username</label>
                         <input type='text' required id='username' ref={usernameInputRef} />
                     </div>
+                    {props.usernameAlreadyExists && <p>Username already exists</p>}
                     <div className='control'>
                         <label htmlFor='password'>Password</label>
                         <input type='password' required id='password' ref={passwordInputRef} onChange={() => {

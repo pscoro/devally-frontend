@@ -4,7 +4,7 @@ import LandingPage from './pages/LandingPage';
 import ExplorePage from './pages/ExplorePage';
 import LoginPage from './pages/Login';
 import SignUpPage from './pages/SignUp';
-import MainLayout from './components/MainLayout';
+import MainLayout from './components/layout/MainLayout';
 
 function App() {
   return (

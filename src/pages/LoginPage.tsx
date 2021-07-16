@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import { useHistory } from 'react-router-dom';
 
 import LoginForm from '../components/forms/LoginForm';
+import { LoginData } from '../shared/types';
+import { login } from '../util/auth';
 
-import "./Login.css"
+import "./LoginPage.css"
 
 const Login = () => {
 
@@ -11,12 +13,10 @@ const Login = () => {
 
     const [invalidCreds, setInvalidCreds] = useState(false);
 
-    type LoginData = {
-        usernameOrEmail: string,
-        password: string
-    }
+    
 
     function loginHandler(loginData: LoginData) {
+      console.log("HANDLED");
         // console.log(JSON.stringify(loginData));
         fetch(
             'http://localhost:5000/api/v1/users/login',
@@ -30,10 +30,21 @@ const Login = () => {
           ).then(res => {
             if (res.status === 401) {
                 setInvalidCreds(true);
-            } else  if (res.status === 200) {
+            } else if (res.status === 200) {
                 setInvalidCreds(false);
-                console.log("all good");
-                history.replace('/dashboard');
+
+                res.json().then(json => {
+                  // console.log(json.accessToken);
+                  // window.localStorage.setItem('access-token', json.accessToken);
+                  const accessToken  = json.acess_token as string;
+                  const accessExpireTime = json.access_expires_in as number;
+
+                  if (accessToken && accessExpireTime) login({jwtToken: accessToken, tokenExpiry: accessExpireTime})
+                  history.replace('/dashboard');
+                });
+                
+                // console.log("all good");
+                
             }
             
           });

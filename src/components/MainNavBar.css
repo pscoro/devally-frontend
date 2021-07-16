@@ -7,12 +7,16 @@
     justify-content: space-between;
     background-color: #ffffff;
     padding: 0 5%;
-    box-shadow: 0 0 0 1px lightgray;
+    box-shadow: 0 0 0 1px lightgrey;
 }
   
 .logo {
     width: 50%;
     height: 100%;
+}
+
+.business-span {
+    white-space:nowrap;
 }
   
 .header ul {
@@ -29,14 +33,15 @@
   
 .header a {
     text-decoration: none;
-    font-size: 1.5rem;
-    color: #fcb8d2;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #008cbb;
 }
   
 .header a:hover,
 .header a:active,
 .header a.active {
-    color: #008cbb;
+    color: #61dae2;
 }
   
 .badge {
@@ -48,5 +53,5 @@
 }
 
 .badge:hover {
-    background-color: #fcb8d2;
+    background-color: #61dae2;
 }

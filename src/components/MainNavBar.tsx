@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './MainNavBar.css'
 
 function MainNavBar() {
@@ -14,17 +14,14 @@ function MainNavBar() {
             <nav>
                 <ul>
                     <li>
-                        <Link to='/pro' className='badge'>Go Pro</Link>
+                        <Link to='/businesses' className='badge'><span className="business-span">Are You A Business?</span></Link>
                     </li>
                     <li>
                         <Link to='/explore'>Explore</Link>
                     </li>
-                    <li>
-                        <Link to='/sign-up'>Sign Up</Link>
-                    </li>
-                    <li>
-                        <Link to='/login'>Login</Link>
-                    </li>
+                    {useLocation().pathname !== "/dashboard" && <li><Link to='/sign-up'>Sign Up</Link></li>}
+                    {useLocation().pathname !== "/dashboard" && <li><Link to='/login'>Login</Link></li>}
+                    {/* REPLACE WITH LOG IN CHECK*/}
                 </ul>
             </nav>
         </header>

@@ -1,0 +1,39 @@
+.sign-up-container {
+    width: 400px;
+    margin: auto;
+    margin-top: 4rem;
+    /* flex-grow: 1; */
+}
+
+h1 {
+    color: #77002e;
+}
+
+.page-container {
+    width: 100%;
+    display: flex;
+}
+
+.left {
+    flex-grow: 1;
+    padding: 10px;
+    margin: auto;
+}
+
+.right {
+    flex-grow: 1;
+    padding: 10px;
+    margin: auto
+}
+
+.right img, .left img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+    width: 50%;
+}
+
+.right img {
+    transform: scaleX(-1)
+}

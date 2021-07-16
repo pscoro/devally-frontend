@@ -5,7 +5,7 @@ import MainNavBar from '../MainNavBar';
 import './MainLayout.css';
 
 type PropsMainLayout = {
-    title?: string;
+    
 }
 
 const MainLayout: React.FC<PropsMainLayout> = (props) => {

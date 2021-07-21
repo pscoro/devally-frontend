@@ -67,15 +67,22 @@ const SignUp = () => {
                 if (res.status === 401) {
                     console.log("Trouble Logging in");
                 } else if (res.status === 200) {
-                    res.json().then(json => {
-                      // console.log(json.accessToken);
-                      // window.localStorage.setItem('access-token', json.accessToken);
-                      const accessToken  = json.access_token as string;
-                      const accessExpireTime = json.access_expires_in as number;
-    
-                      if (accessToken && accessExpireTime) login({jwtToken: accessToken, tokenExpiry: accessExpireTime})
-                      history.replace('/dashboard');
-                    });
+                  res.json().then(json => {
+                    // console.log(json.accessToken);
+                    // window.localStorage.setItem('access-token', json.accessToken);
+                    const accessToken  = json.access_token as string;
+                    const accessExpireTime = json.access_expires_in as number;
+                    const accessIssuedAt = json.access_issued_at as number;
+  
+                    const refreshToken = json.refresh_token as string;
+                    const refreshExpireTime = json.refresh_expires_in as number;
+                    const refreshIssuedAt = json.refresh_issued_at as number;
+  
+                    if (accessToken && accessExpireTime) login({jwtToken: accessToken, tokenExpiry: accessExpireTime, issuedAt: accessIssuedAt},
+                      {jwtToken: refreshToken, tokenExpiry: refreshExpireTime, issuedAt: refreshIssuedAt})
+  
+                    history.replace('/dashboard');
+                  });
                     
                     // console.log("all good");
                     

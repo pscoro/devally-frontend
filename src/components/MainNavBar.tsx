@@ -1,8 +1,12 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { LoginContext } from '../util/auth';
+// import { isLoggedIn } from '../util/auth';
 import './MainNavBar.css'
 
 function MainNavBar() {
+
+    const loginContext = useContext(LoginContext);
 
     return (
         <header className="header">
@@ -19,8 +23,10 @@ function MainNavBar() {
                     <li>
                         <Link to='/explore'>Explore</Link>
                     </li>
-                    {useLocation().pathname !== "/dashboard" && <li><Link to='/sign-up'>Sign Up</Link></li>}
-                    {useLocation().pathname !== "/dashboard" && <li><Link to='/login'>Login</Link></li>}
+                    {!loginContext.isLoggedIn && <li><Link to='/sign-up'>Sign Up</Link></li>}
+                    {!loginContext.isLoggedIn && <li><Link to='/login'>Login</Link></li>}
+                    {loginContext.isLoggedIn && <li><Link to='/logout'>Logout</Link></li>}
+
                     {/* REPLACE WITH LOG IN CHECK*/}
                 </ul>
             </nav>

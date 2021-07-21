@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { useHistory } from 'react-router-dom';
 
 import LoginForm from '../components/forms/LoginForm';
 import { LoginData } from '../shared/types';
-import { login } from '../util/auth';
+import { login, LoginContext } from '../util/auth';
 
 import "./LoginPage.css"
 
@@ -12,6 +12,7 @@ const Login = () => {
     const history = useHistory();
 
     const [invalidCreds, setInvalidCreds] = useState(false);
+    const loginContext = useContext(LoginContext);
 
     
 
@@ -33,13 +34,23 @@ const Login = () => {
             } else if (res.status === 200) {
                 setInvalidCreds(false);
 
+                loginContext.setIsLoggedIn(true);
+                console.log("is logged in? " + loginContext.isLoggedIn);
+
                 res.json().then(json => {
                   // console.log(json.accessToken);
                   // window.localStorage.setItem('access-token', json.accessToken);
-                  const accessToken  = json.acess_token as string;
+                  const accessToken  = json.access_token as string;
                   const accessExpireTime = json.access_expires_in as number;
+                  const accessIssuedAt = json.access_issued_at as number;
 
-                  if (accessToken && accessExpireTime) login({jwtToken: accessToken, tokenExpiry: accessExpireTime})
+                  const refreshToken = json.refresh_token as string;
+                  const refreshExpireTime = json.refresh_expires_in as number;
+                  const refreshIssuedAt = json.refresh_issued_at as number;
+
+                  if (accessToken && accessExpireTime) login({jwtToken: accessToken, tokenExpiry: accessExpireTime, issuedAt: accessIssuedAt},
+                    {jwtToken: refreshToken, tokenExpiry: refreshExpireTime, issuedAt: refreshIssuedAt})
+
                   history.replace('/dashboard');
                 });
                 
